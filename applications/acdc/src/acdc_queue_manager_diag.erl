@@ -219,7 +219,7 @@ monitor_manager(Manager) ->
             monitor('process', Manager),
             Manager
     catch
-        'error':E -> {'error', {E, erlang:get_stacktrace()}}
+        'error':E:ST -> {'error', {E, ST}}
     end.
 
 %%------------------------------------------------------------------------------
