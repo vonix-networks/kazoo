@@ -736,7 +736,7 @@ do_launch_cf_module(#state{call=Call
 
     {PidRef, Action} =
         case maybe_start_cf_module(Module, Data, Call) of
-            {{Pid, _Ref}=PR, _Action}=Resp ->
+            {{_Pid, _Ref}=PR, _Action}=Resp ->
                 link(get_pid(PR)),
                 Resp;
             Resp -> Resp
