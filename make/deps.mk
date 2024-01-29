@@ -53,7 +53,6 @@ ifeq ($(CIRCLECI),true)
 endif
 
 dep_ranch = git https://github.com/2600hz/erlang-ranch 1.7.1
-
 dep_cowboy = git  https://github.com/ninenines/cowboy.git 2.10.0
 dep_cowlib = git  https://github.com/ninenines/cowlib.git 2.12.1
 
