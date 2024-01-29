@@ -310,23 +310,8 @@ save_private_key(JObj, Key) ->
 
 -spec gen_private_key() -> {'ok', public_key:rsa_private_key()}.
 gen_private_key() ->
-    {'ok', MPInts} = kz_auth_rsa:gen_rsa(?RSA_KEY_SIZE, ?RSA_KEY_SIZE + 1),
-    [E, N, D, P, Q, DMP1, DMQ1, IQMP] = erlint(MPInts),
-    Key = #'RSAPrivateKey'{version = 'two-prime',
-                           modulus = N,
-                           publicExponent = E,
-                           privateExponent = D,
-                           prime1 = P,
-                           prime2 = Q,
-                           exponent1 = DMP1,
-                           exponent2 = DMQ1,
-                           coefficient = IQMP},
+    Key = public_key:generate_key({rsa, ?RSA_KEY_SIZE, ?RSA_KEY_SIZE + 1}),
     {'ok', Key}.
-
--spec erlint(list() | integer()) -> integer() | list().
-erlint(MPInts) when is_list(MPInts) -> [erlint(X) || X <- MPInts ];
-erlint(<<Size:32, Int:Size/unit:8>>) -> Int.
-
 
 %% @equiv reset_private_key(kz_auth_apps:get_auth_app(<<"kazoo">>))
 -spec reset_kazoo_private_key() -> {'ok', kz_term:ne_binary()} | {'error', any()}.
