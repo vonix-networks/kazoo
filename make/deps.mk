@@ -52,7 +52,7 @@ ifeq ($(CIRCLECI),true)
     DEPS += proper
 endif
 
-dep_ranch = git https://github.com/ninenines/ranch.git 1.8.x
+dep_ranch = git https://github.com/ninenines/ranch.git 1.8.0
 dep_cowboy = git  https://github.com/ninenines/cowboy.git 2.10.0
 dep_cowlib = git  https://github.com/ninenines/cowlib.git 2.12.1
 
