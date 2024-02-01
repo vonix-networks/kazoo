@@ -61,7 +61,7 @@ dep_gun = git https://github.com/2600hz/erlang-gun 2600hz-2.0.0-pre.3-4.3
 dep_apns = git https://github.com/2600hz/erlang-apns4erl.git 2600hz-2.4.2
 
 
-dep_amqp_client = hex 3.8.5
+dep_amqp_client = hex 3.7.14
 dep_certifi = hex 0.3.0
 dep_chatterbox = hex 0.7.0
 dep_eflame = git https://github.com/slfritchie/eflame 7b0bb1a7e8c8482a59421a3a50ae69d49af59d52
