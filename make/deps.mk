@@ -77,7 +77,7 @@ dep_erlcloud = git https://github.com/erlcloud/erlcloud 3.2.4
 
 dep_erlazure = git https://github.com/lazedo/erlazure.git add-start-link
 
-dep_couchbeam = git https://github.com/2600hz/erlang-couchbeam 28fce6c340de83f4792d45224c29ec729b8e264d # latest commit SHA to 2600hz branch
+dep_couchbeam = git https://github.com/2600hz/erlang-couchbeam 49521721a9c6d32512afa2ec27cdf310886eb779 # latest commit SHA to 2600hz branch
 ###dep_couchbeam = git https://github.com/benoitc/couchbeam 1.4.1
 ### waiting for pull requests
 ### https://github.com/benoitc/couchbeam/pull/158
