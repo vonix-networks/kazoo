@@ -1,4 +1,5 @@
 ## Kazoo Makefile targets
+## Targets are run from the application's root directory (not KAZOO root).
 
 .PHONY: compile compile-lean json compile-test clean clean-test eunit dialyze xref proper fixture_shell app_src depend $(DEPS_RULES) splchk
 
@@ -50,7 +51,33 @@ TEST_EBINS += $(EBINS) $(ROOT)/deps/proper/ebin
 PA      = -pa ebin/ $(foreach EBIN,$(EBINS),-pa $(EBIN))
 TEST_PA = -pa ebin/ $(foreach EBIN,$(TEST_EBINS),-pa $(EBIN))
 
-DEPS_RULES = .deps.mk
+DEPS_RULES = .deps.rules
+DEPS_MK = $(CURDIR)/deps.mk
+
+.PHONY: deps
+ifneq (,$(wildcard $(DEPS_MK)))
+# Track app's dependencies, if any
+DEPS_HASH := $(shell md5sum $(DEPS_MK) | cut -d' ' -f1)
+DEPS_HASH_FILE := .deps.mk.$(DEPS_HASH)
+
+deps: $(DEPS_MK) $(DEPS_HASH_FILE)
+
+$(DEPS_HASH_FILE):
+	@[[ -s $(DEPS_MK) ]] && DEPS_MK='$(DEPS_MK)' $(MAKE) -C $(ROOT)/deps/ all || true
+
+else
+deps: $(DEPS_MK)
+
+$(DEPS_MK):
+	@touch $(DEPS_MK)
+	@touch .deps.mk.$(shell md5sum $(DEPS_MK) | cut -d' ' -f1)
+
+endif
+
+clean-deps: clean-deps-hash
+
+clean-deps-hash:
+	$(if $(wildcard .deps.mk.*), rm .deps.mk.*)
 
 comma := ,
 empty :=
@@ -73,7 +100,7 @@ include $(DEPS_RULES)
 endif
 
 ## COMPILE_MOAR can contain Makefile-specific targets (see CLEAN_MOAR, compile-test)
-compile: $(COMPILE_MOAR) ebin/$(PROJECT).app json depend $(BEAMS)
+compile: deps $(TEST_DEPS) $(COMPILE_MOAR) ebin/$(PROJECT).app json depend $(BEAMS)
 
 compile-lean: ERLC_OPTS := $(filter-out +debug_info,$(ERLC_OPTS))
 compile-lean: compile
@@ -104,8 +131,28 @@ json: JSON = $(shell find . -name '*.json')
 json:
 	@$(ROOT)/scripts/format-json.sh $(JSON)
 
+compile-test: $(TEST_DEPS) compile-test-kz-deps compile-test-direct json
 
-compile-test: clean-test $(COMPILE_MOAR) test/$(PROJECT).app json
+compile-test-direct: deps $(COMPILE_MOAR) test/$(PROJECT).app
+
+$(TEST_DEPS):
+	 ERL_LIBS=$(ROOT)/deps:$(ROOT)/core:$(ROOT)/applications $(ROOT)/scripts/calculate-dep-targets.escript $(ROOT) $(PROJECT) > $(TEST_DEPS)
+
+ifeq (,$(wildcard $(TEST_DEPS)))
+KZ_DEPS_TARGETS =
+else
+KZ_DEPS = $(filter kazoo%,$(shell cat $(TEST_DEPS)))
+KZ_DEPS_TARGETS = $(strip $(subst kazoo,compile-test-core-kazoo,$(KZ_DEPS)))
+endif
+
+ifeq ($(KZ_DEPS_TARGETS),)
+compile-test-kz-deps: test/$(PROJECT).app
+else
+compile-test-kz-deps: $(KZ_DEPS_TARGETS)
+
+compile-test-core-%:
+	$(MAKE) compile-test-direct -C $(ROOT)/core/$*
+endif
 
 test/$(PROJECT).app: ERLC_OPTS += -DTEST
 test/$(PROJECT).app: $(TEST_SOURCES)
@@ -174,7 +221,7 @@ dialyze-hard: TO_DIALYZE ?= $(abspath ebin)
 dialyze-hard: $(PLT) compile
 	@ERL_LIBS=$(ROOT)/deps:$(ROOT)/core:$(ROOT)/applications $(ROOT)/scripts/check-dialyzer.escript $(ROOT)/.kazoo.plt --hard $(TO_DIALYZE)
 
-REBAR=$(ROOT)/deps/.erlang.mk/rebar/rebar
+REBAR=$(ROOT)/deps/.erlang.mk/rebar3/rebar3
 
 xref: TO_XREF = ebin/  #FIXME: set TO_XREF to an app's dependencies' ebin/ directories
 xref: compile
