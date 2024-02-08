@@ -5,7 +5,7 @@ DEPS_DIR = $(ROOT)/deps
 RELX = $(DEPS_DIR)/relx
 ELVIS = $(DEPS_DIR)/elvis
 TAGS = $(ROOT)/TAGS
-ERLANG_MK_COMMIT = 82179575d9191305805c8e6e8107be7c3f80a6be
+ERLANG_MK_COMMIT = 43533ac6bc2112beaa229bbb3fe5cd73a116ecda
 
 BASE_BRANCH := $(shell cat $(ROOT)/.base_branch)
 

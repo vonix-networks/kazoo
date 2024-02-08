@@ -221,7 +221,7 @@ dialyze-hard: TO_DIALYZE ?= $(abspath ebin)
 dialyze-hard: $(PLT) compile
 	@ERL_LIBS=$(ROOT)/deps:$(ROOT)/core:$(ROOT)/applications $(ROOT)/scripts/check-dialyzer.escript $(ROOT)/.kazoo.plt --hard $(TO_DIALYZE)
 
-REBAR=$(ROOT)/deps/.erlang.mk/rebar/rebar
+REBAR=$(ROOT)/deps/.erlang.mk/rebar3/rebar3
 
 xref: TO_XREF = ebin/  #FIXME: set TO_XREF to an app's dependencies' ebin/ directories
 xref: compile
