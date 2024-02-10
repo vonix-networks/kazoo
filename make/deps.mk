@@ -77,7 +77,7 @@ dep_erlcloud = git https://github.com/erlcloud/erlcloud 3.2.4
 
 dep_erlazure = git https://github.com/lazedo/erlazure.git add-start-link
 
-dep_couchbeam = git https://github.com/2600hz/erlang-couchbeam 469f3b103ac332311a8878c5c1e885ff79724045 # latest SHA from couchbeam master branch
+dep_couchbeam = git https://github.com/vonix-networks/erlang-couchbeam 1.5-vonix # Created new branch branch from kazoo5 and merged master into it
 ###dep_couchbeam = git https://github.com/benoitc/couchbeam 1.4.1
 ### waiting for pull requests
 ### https://github.com/benoitc/couchbeam/pull/158
