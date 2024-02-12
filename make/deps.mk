@@ -65,7 +65,7 @@ dep_eiconv = git https://github.com/zotonic/eiconv
 dep_jiffy = git https://github.com/lazedo/jiffy utf8  ## utf8 decode
 dep_meck = git https://github.com/eproxus/meck
 dep_qdate_localtime = git https://github.com/choptastic/qdate_localtime 1.2.1
-dep_nklib = git https://github.com/NetComposer/nklib
+dep_nklib = git https://github.com/NetComposer/nklib 1f29f8f566586618651e4680dcc488f2dc11ff5c # Latest SHA from nklib master branch
 dep_plists = hex 1.0.0
 
 dep_erlcloud = git https://github.com/erlcloud/erlcloud 3.2.4
