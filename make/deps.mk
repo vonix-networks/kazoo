@@ -31,7 +31,6 @@ DEPS = amqp_client \
 	lager \
 	lager_syslog \
 	meck \
-    qdate_localtime \
 	nklib \
 	plists \
 	poolboy \
