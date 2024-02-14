@@ -1,4 +1,5 @@
-DEPS ?= amqp_client \
+DEPS = amqp_client \
+	apns \
 	certifi \
 	chatterbox \
 	couchbeam \
@@ -12,12 +13,17 @@ DEPS ?= amqp_client \
 	erlcloud \
 	erlsom \
 	erlydtl \
+	escalus \
+	exml \
+	fcm \
+	folsom \
 	fs_event \
 	fs_sync \
 	gen_smtp \
 	getopt \
 	gproc \
 	gun \
+	hep \
 	horse \
 	inet_cidr \
 	jesse \
@@ -52,7 +58,7 @@ dep_cowlib = git  https://github.com/ninenines/cowlib.git 2.12.1
 
 dep_gun = git https://github.com/2600hz/erlang-gun 2600hz-2.0.0-pre.3-4.3
 
-# dep_apns = git https://github.com/2600hz/erlang-apns4erl.git 2600hz-2.4.2
+dep_apns = git https://github.com/2600hz/erlang-apns4erl.git 2600hz-2.4.2
 
 
 dep_amqp_client = hex 3.7.14
@@ -60,8 +66,8 @@ dep_certifi = hex 0.3.0
 dep_chatterbox = hex 0.8.0
 dep_eflame = git https://github.com/proger/eflame 34d0c19dee808d614d75d91c143386d5120efb4b
 dep_eiconv = git https://github.com/zotonic/eiconv
-# dep_escalus = git https://github.com/esl/escalus 0de0463c345a1ade6fccfb9aadad719b58a1cef5
-# dep_exml = git https://github.com/paulgray/exml 2.2.1
+dep_escalus = git https://github.com/esl/escalus 0de0463c345a1ade6fccfb9aadad719b58a1cef5
+dep_exml = git https://github.com/paulgray/exml 2.2.1
 dep_jiffy = git https://github.com/lazedo/jiffy utf8  ## utf8 decode
 dep_meck = git https://github.com/eproxus/meck
 dep_nklib = git https://github.com/NetComposer/nklib v0.4.1
@@ -93,7 +99,7 @@ dep_erlang_localtime = git https://github.com/2600hz/erlang-localtime 2600hz
 
 
 ### need to update upstream ###
-# dep_hep = git https://github.com/lazedo/hep 1.5.4
+dep_hep = git https://github.com/lazedo/hep 1.5.4
 dep_ecsv = git https://github.com/lazedo/ecsv ecsv-1
 
 ### for scripts/dev-start-*.sh
@@ -108,7 +114,7 @@ dep_proper = git https://github.com/manopapad/proper v1.4
 
 dep_syslog = git https://github.com/2600hz/erlang-syslog bbad537a1cb5e4f37e672d2e2665659e850662d0
 
-# dep_fcm = git https://github.com/softwarejoint/fcm-erlang.git b2f68a4c6f0f59475597a35e2dc9be13d9ba2910
+dep_fcm = git https://github.com/softwarejoint/fcm-erlang.git b2f68a4c6f0f59475597a35e2dc9be13d9ba2910
 
 dep_gen_smtp = git https://github.com/2600hz/erlang-gen_smtp 3f80bfcd4fd8704739d264eb4d5005d4392f2a35
 ## pinning gen_smtp because upstream made some breaking changes (using maps in some options)
