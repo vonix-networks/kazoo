@@ -4,7 +4,7 @@ PROJECT = sup
 ESCRIPT = sup
 CLEAN_MOAR = clean-escript
 
-all: compile $(ESCRIPT)
+all: compile #$(ESCRIPT)
 
 $(ESCRIPT): src/sup.erl
 	@$(REBAR) escriptize
