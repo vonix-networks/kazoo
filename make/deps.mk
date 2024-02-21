@@ -115,3 +115,5 @@ dep_gen_smtp = git https://github.com/2600hz/erlang-gen_smtp 3f80bfcd4fd8704739d
 ## pinning gen_smtp because upstream made some breaking changes (using maps in some options)
 ## adding check to not convert if the From/To encodings match
 ## latest commit to origin/2600Hz: Fixes for encoding email address in a single comma separated header line
+
+dep_wsock = git https://github.com/vonix-networks/wsock 1.1.8-vonix
