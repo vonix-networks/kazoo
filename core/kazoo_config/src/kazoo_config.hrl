@@ -22,8 +22,8 @@
                            }
                           ,{'bigcouch', [{'ip', "localhost"}
                                         ,{'port', 5984}
-                                        ,{'username', "admin"}
-                                        ,{'password', "admin"}
+                                        ,{'username', ""}
+                                        ,{'password', ""}
                                         ,{'admin_port', 5986}
                                         ,{'cookie', 'monster'}
                                         ,{'compact_automatically', 'true'}

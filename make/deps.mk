@@ -25,7 +25,6 @@ DEPS ?= amqp_client \
 	lager \
 	lager_syslog \
 	meck \
-	qdate_localtime \
 	nklib \
 	plists \
 	poolboy \
@@ -35,7 +34,13 @@ DEPS ?= amqp_client \
 	reloader \
 	syslog \
 	wsock \
-	zucchini
+	zucchini \
+	enotify \
+	yamerl \
+	jsone \
+	mimerl \
+	eper \
+	parsexml
 
 BUILD_DEPS = parse_trans
 IGNORE_DEPS = hamcrest
@@ -118,3 +123,10 @@ dep_gen_smtp = git https://github.com/2600hz/erlang-gen_smtp 3f80bfcd4fd8704739d
 ## latest commit to origin/2600Hz: Fixes for encoding email address in a single comma separated header line
 
 dep_wsock = git https://github.com/vonix-networks/wsock 1.1.8-vonix
+
+dep_enotify = hex 0.1.0
+dep_yamerl = hex 0.10.0
+dep_jsone = hex 1.8.1
+dep_mimerl = hex 1.2.0
+dep_eper = hex 0.99.1
+dep_parsexml = hex 1.0.0

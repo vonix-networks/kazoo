@@ -4,6 +4,7 @@ DEPS_DIR = $(ROOT)/deps
 
 RELX = $(DEPS_DIR)/relx
 ELVIS = $(DEPS_DIR)/elvis
+FMT = $(ROOT)/make/erlang-formatter/fmt.sh
 TAGS = $(ROOT)/TAGS
 ERLANG_MK_COMMIT = 43533ac6bc2112beaa229bbb3fe5cd73a116ecda
 
