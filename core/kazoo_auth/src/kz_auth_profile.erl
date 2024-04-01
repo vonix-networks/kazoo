@@ -96,7 +96,7 @@ maybe_load_profile(#{auth_provider := #{profile_url := _ProfileURL} = Provider
               ],
     URL = kz_term:to_list(profile_url(Token)),
     Verb = profile_access_verb(Provider),
-    {'ok',{_,_, Host, _, _, _}} = http_uri:parse(URL),
+    {'ok',{_,_, Host, _, _, _}} = uri_string:parse(URL),
     Headers = [{<<"host">>, Host}
                | profile_authorization_headers(Token, AccessToken)
               ],

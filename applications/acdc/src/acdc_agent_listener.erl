@@ -810,8 +810,8 @@ handle_cast('logout_agent', #state{acct_id=AcctId
     lager:debug("published agent logout message"),
     {'noreply', State};
 
-handle_cast({'presence_id', _Id}, #state{agent_presence_id=_Id}=State) ->
-    {'noreply', State};
+%%% handle_cast({'presence_id', _Id}, #state{agent_presence_id=_Id}=State) ->
+    %%% {'noreply', State};
 handle_cast({'presence_id', PresenceId}, #state{agent_presence_id=_Id}=State) ->
     lager:debug("updating presence id from ~s to ~s", [_Id, PresenceId]),
     {'noreply', State#state{agent_presence_id=PresenceId}};

@@ -134,7 +134,9 @@ $(RELX):
 
 clean-release:
 	$(if $(wildcard _rel/), rm -r _rel/)
-
+	
+build-relx:
+	RELX_CONFIG=rel/relx.config RELX_CONFIG_SCRIPT=rel/relx.config.script RELX_OPTS="-V 2 release --relname 'kazoo'" RELX_TAR=0 make -frelease.mk rel
 build-release: $(RELX) clean-release rel/relx.config rel/relx.config.script rel/sys.config rel/vm.args
 	$(RELX) --config rel/relx.config -V 2 release --relname 'kazoo'
 build-dev-release: $(RELX) clean-release rel/dev.relx.config rel/dev.relx.config.script rel/dev.vm.args rel/dev.sys.config
