@@ -20,22 +20,22 @@
 
 -spec sha_mac(iodata(), iodata()) -> binary().
 sha_mac(K, S) ->
-    try crypto:hmac('sha', K, S)
+    try crypto:mac('sha', K, S)
     catch
         'error':'undef' ->
-            R0 = crypto:hmac_init('sha', K),
-            R1 = crypto:hmac_update(R0, S),
-            crypto:hmac_final(R1)
+            R0 = crypto:mac_init('sha', K),
+            R1 = crypto:mac_update(R0, S),
+            crypto:mac_final(R1)
     end.
 
 -spec sha256_mac(iodata(), iodata()) -> binary().
 sha256_mac(K, S) ->
-    try crypto:hmac('sha256', K, S)
+    try crypto:mac('sha256', K, S)
     catch
         'error':'undef' ->
-            R0 = crypto:hmac_init('sha256', K),
-            R1 = crypto:hmac_update(R0, S),
-            crypto:hmac_final(R1)
+            R0 = crypto:mac_init('sha256', K),
+            R1 = crypto:mac_update(R0, S),
+            crypto:mac_final(R1)
     end.
 
 -spec sha256(iodata()) -> binary().

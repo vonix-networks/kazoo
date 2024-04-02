@@ -474,19 +474,19 @@ get_event_type(JObj) ->
 
 -spec uri_decode(kz_term:text()) -> kz_term:text().
 uri_decode(Binary) when is_binary(Binary) ->
-    kz_term:to_binary(http_uri:decode(kz_term:to_list(Binary)));
+    kz_term:to_binary(uri_string:unquote(kz_term:to_list(Binary)));
 uri_decode(String) when is_list(String) ->
-    http_uri:decode(String);
+    uri_string:unquote(String);
 uri_decode(Atom) when is_atom(Atom) ->
-    kz_term:to_atom(http_uri:decode(kz_term:to_list(Atom)), 'true').
+    kz_term:to_atom(uri_string:unquote(kz_term:to_list(Atom)), 'true').
 
 -spec uri_encode(kz_term:text()) -> kz_term:text().
 uri_encode(Binary) when is_binary(Binary) ->
-    kz_term:to_binary(http_uri:encode(kz_term:to_list(Binary)));
+    kz_term:to_binary(uri_string:quote(kz_term:to_list(Binary)));
 uri_encode(String) when is_list(String) ->
-    http_uri:encode(String);
+    uri_string:quote(String);
 uri_encode(Atom) when is_atom(Atom) ->
-    kz_term:to_atom(http_uri:encode(kz_term:to_list(Atom)), 'true').
+    kz_term:to_atom(uri_string:quote(kz_term:to_list(Atom)), 'true').
 
 -spec resolve_uri(nonempty_string() | kz_term:ne_binary(), nonempty_string() | kz_term:api_ne_binary()) -> kz_term:ne_binary().
 resolve_uri(Raw, 'undefined') -> kz_term:to_binary(Raw);
