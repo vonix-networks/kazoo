@@ -809,8 +809,7 @@ handle_cast('logout_agent', #state{acct_id=AcctId
     kapi_acdc_agent:publish_logout(Update),
     lager:debug("published agent logout message"),
     {'noreply', State};
-
-
+    
 handle_cast({'presence_id', _PresenceId}, #state{agent_presence_id=_Id}=State) when _PresenceId =:= _Id ->
     {'noreply', State};
 handle_cast({'presence_id', PresenceId}, #state{agent_presence_id=_Id}=State) ->
