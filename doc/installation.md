@@ -1,6 +1,6 @@
 # Kazoo Installation Guide
 
-This is a guide to building Kazoo from source on a Debian 8 (Jessie) base installation. Other GNU/Linux distros should work similarly, though the dependencies may differ a bit. If you want to just install and use Kazoo (and not build it) try using the [installation instructions](https://docs.2600hz.com/sysadmin/doc/install/install_via_centos7/). The rest of this guide assumes you want to run a development environment for Kazoo.
+This is a guide to building Kazoo from source on a Debian 12 (Bookworm) base installation. Other GNU/Linux distros should work similarly, though the dependencies may differ a bit. If you want to just install and use Kazoo (and not build it) try using the [installation instructions](https://docs.2600hz.com/sysadmin/doc/install/install_via_centos7/). The rest of this guide assumes you want to run a development environment for Kazoo.
 
 
 ## Dependencies
@@ -33,20 +33,19 @@ Note: `htmldoc` is required only if [you want to be able to download PDFs](./ann
 
 ### Erlang
 
-Kazoo 4 targets Erlang 19+. There are a couple ways to install Erlang:
+Kazoo 4.3-vonix targets Erlang 25+. There are a couple ways to install Erlang:
 
 1.  From Source
 
-    I prefer to use a tool like [kerl](https://github.com/kerl/kerl) to manage my installations. If you want to play around with multiple versions of Erlang while hacking on Kazoo, this is probably the best way.
+    I prefer to use a tool like [asdf](https://github.com/asdf-vm/asdf) to manage my installations. If you want to play around with multiple versions of Erlang while hacking on Kazoo, this is probably the best way.
 
 ```shell
-    curl -O https://raw.githubusercontent.com/kerl/kerl/master/kerl
-    chmod +x kerl
-    mv kerl /usr/bin
-    kerl list releases
-    kerl build 19.3 19.3 # this takes a while
-    kerl install 19.3 /usr/local/otp-19.3
-    . /usr/local/otp-19.3/activate
+    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.1
+    echo '. "$HOME/.asdf/asdf.sh"' >> ~/.bashrc
+    echo '. "$HOME/.asdf/completions/asdf.bash"' >> ~/.bashrc
+    source ~/.bashrc
+    asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git
+    asdf install erlang 25
 ```
 
 2.  Erlang Solutions
