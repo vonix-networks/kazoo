@@ -127,7 +127,7 @@ app_src:
 	@ERL_LIBS=$(ROOT)/deps:$(ROOT)/core:$(ROOT)/applications $(ROOT)/scripts/apps_of_app.escript -a $(shell find $(ROOT) -name $(PROJECT).app.src)
 
 
-json: JSON = $(shell find . -name '*.json')
+json: JSON = $(shell find . -name '*.json' | grep -v _build)
 json:
 	@$(ROOT)/scripts/format-json.sh $(JSON)
 
