@@ -260,7 +260,7 @@ first_pass(Before, [Ordered|InOrder], [Chunk|ToOrder], UnMergeable) ->
             first_pass([], Before++[Ordered]++[Chunk|InOrder], ToOrder, UnMergeable);
         {'true', ______, 'true'} ->
             first_pass([], Before++[Chunk]++[Ordered|InOrder], ToOrder, UnMergeable);
-        {'true', ______, ______} ->
+        {'true', _, ______} ->
             first_pass([], Before++[Ordered|InOrder], ToOrder, [Chunk|UnMergeable]);
         {'false', _____, ______} ->
             first_pass(Before++[Ordered], InOrder, [Chunk|ToOrder], UnMergeable)
